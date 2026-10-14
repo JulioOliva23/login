@@ -8,7 +8,7 @@ test("git status devuelve texto", async () => {
 });
 
 test("git status muestra la rama main", async () => {
-  assert.match(await getGitStatus(), /^## rama-inexistente(?:\.\.\.origin\/main)?$/m);
+  assert.match(await getGitStatus(), /^## main(?:\.\.\.origin\/main)?$/m);
 });
 
 test("git status se ejecuta dentro de un repositorio", async () => {
