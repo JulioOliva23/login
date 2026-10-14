@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { getGitStatus } from "../scripts/git-status.js";
-import gitStatusPlugin from "../.opencode/plugin/git-status.js";
+import gitStatusPlugin from "../.opencode/hooks/git-status.js";
 
 test("git status devuelve texto", async () => {
   assert.equal(typeof await getGitStatus(), "string");
