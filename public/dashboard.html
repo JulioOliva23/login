@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mi cuenta</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="card" id="dashboard" hidden>
+    <h1>Hola, <span id="user-name"></span> 👋</h1>
+    <p class="muted">Has iniciado sesión correctamente.</p>
+    <dl class="details">
+      <dt>Email</dt><dd id="user-email"></dd>
+      <dt>Miembro desde</dt><dd id="user-created"></dd>
+    </dl>
+    <button id="logout" type="button" class="primary">Cerrar sesión</button>
+  </main>
+
+  <script>
+    (async () => {
+      const res = await fetch('/api/me');
+      if (!res.ok) return location.replace('/');
+      const { user } = await res.json();
+      document.getElementById('user-name').textContent = user.name;
+      document.getElementById('user-email').textContent = user.email;
+      document.getElementById('user-created').textContent =
+        new Date(user.created_at + 'Z').toLocaleDateString('es');
+      document.getElementById('dashboard').hidden = false;
+    })();
+
+    document.getElementById('logout').addEventListener('click', async () => {
+      await fetch('/api/logout', { method: 'POST' });
+      location.replace('/');
+    });
+  </script>
+</body>
+</html>

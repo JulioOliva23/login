@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Iniciar sesión</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="card">
+    <h1 id="title">Iniciar sesión</h1>
+
+    <div class="tabs" role="tablist">
+      <button type="button" class="tab active" data-mode="login">Entrar</button>
+      <button type="button" class="tab" data-mode="register">Crear cuenta</button>
+    </div>
+
+    <form id="auth-form" novalidate>
+      <label class="field register-only" hidden>
+        <span>Nombre</span>
+        <input name="name" type="text" autocomplete="name">
+      </label>
+      <label class="field">
+        <span>Email</span>
+        <input name="email" type="email" autocomplete="email" required>
+      </label>
+      <label class="field">
+        <span>Contraseña</span>
+        <input name="password" type="password" autocomplete="current-password" required minlength="8">
+      </label>
+
+      <p id="error" class="error" role="alert" hidden></p>
+
+      <button id="submit" type="submit" class="primary">Entrar</button>
+    </form>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>
