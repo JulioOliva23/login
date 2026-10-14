@@ -6,7 +6,7 @@ import {
   COOKIE_NAME, cookieOptions, createSession, deleteSession,
   hashPassword, loadUser, requireAuth, verifyPassword,
 } from './auth.js';
-
+//quiero que falle el hook
 export const app = express();
 const publicDir = join(dirname(fileURLToPath(import.meta.url)), '..', 'public');
 
