@@ -41,7 +41,7 @@ app.post('/api/register', async (req, res) => {
   const password = String(req.body?.password || '');
 
   if (!name) return res.status(400).json({ error: 'El nombre es obligatorio' });
-  if (name.length > 200) {
+  if (name.length > 100) {
     return res.status(400).json({ error: 'El nombre no puede tener más de 100 caracteres' });
   }
   if (!EMAIL_RE.test(email)) return res.status(400).json({ error: 'Email no válido' });
