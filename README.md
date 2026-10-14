@@ -33,3 +33,18 @@ Abre http://localhost:3000
 - Contraseñas con hash `scrypt` y salt aleatorio.
 - Sesiones guardadas en la BD, enviadas en una cookie `httpOnly` y `SameSite=Lax` (`Secure` con `NODE_ENV=production`).
 - Límite de 10 intentos de login por IP cada 15 minutos.
+
+## Tests y hooks
+
+```bash
+npm test
+```
+
+Los tests están en `test/` y usan `node:test`, sin dependencias extra.
+
+**Hooks de Claude Code** (`.claude/settings.json`):
+
+- **Stop**: al terminar cada respuesta, Claude ejecuta `npm test`. Si algún test falla, no puede terminar: recibe el error y debe arreglar el código. Tiene un máximo de 5 intentos para no quedarse en bucle.
+- **PreToolUse en `git push`**: antes de cualquier push que haga Claude se ejecutan los tests. Si fallan, el push se bloquea hasta que estén arreglados.
+
+**Git hook** (`.githooks/pre-push`): cuando haces push tú mismo, también se ejecutan los tests y el push se cancela si fallan. `npm install` lo activa automáticamente mediante el script `prepare`.

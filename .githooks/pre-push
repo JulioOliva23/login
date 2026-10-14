@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Git hook: bloquea el push si los tests fallan.
+echo "▶ Ejecutando tests antes del push..."
+if ! npm test --silent; then
+  echo "✖ Push cancelado: hay tests fallando." >&2
+  exit 1
+fi
+echo "✔ Tests OK"
